@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { TextField, InputAdornment, IconButton } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
-import { loginUser } from '../../utils/auth';
-import { apiCall } from '../../utils/fetch';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { loginUser } from '../../utils/auth'
+import { apiCall } from '../../utils/fetch'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { toStoreData } from '../../views/loginView/LoginView'
+import { useAppDispatch } from '../../hooks'
 import './LoginForm.css'
+import { setToast } from '../../features/toast/toastSlice'
 
 interface loginData {
   email: string
@@ -17,6 +19,7 @@ interface loginFormProps {
   storeData: (data: toStoreData) => void
 }
 export default function LoginView({ storeData = (d) => {} }: loginFormProps) {
+  const dispatch = useAppDispatch()
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [emailErrorText, setEmailErrorText] = useState('')
@@ -65,10 +68,8 @@ export default function LoginView({ storeData = (d) => {} }: loginFormProps) {
       setLoading(false)
       // router.push('/')
     } catch (error) {
-      // toastMessage.value = error
-      // toastType.value = 'error'
-      // toastActive.value = true
-      // loading.value = false
+      setLoading(false)
+      dispatch(setToast({toastInfo: {toastMessage: error as string, toastColor: 'error'}}))
     }
   }
   return (

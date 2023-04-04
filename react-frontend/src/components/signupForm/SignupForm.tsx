@@ -5,6 +5,8 @@ import { apiCall } from '../../utils/fetch'
 import { registerUser } from '../../utils/auth'
 import { LoadingButton } from '@mui/lab'
 import { toStoreData } from '../../views/loginView/LoginView'
+import { useAppDispatch } from '../../hooks'
+import { setToast } from '../../features/toast/toastSlice'
 interface registerData {
   email: string
   password: string
@@ -18,6 +20,7 @@ interface signupFormProps {
   storeData: (data: toStoreData) => void
 }
 export default function SignupView({ storeData = (d) => {} }: signupFormProps) {
+  const dispatch = useAppDispatch()
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -37,10 +40,6 @@ export default function SignupView({ storeData = (d) => {} }: signupFormProps) {
   const [aliasErrorText, setAliasErrorText] = useState('')
   const [aliasError, setAliasError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [toastMessage, setToastMessage] = useState('')
-  const [toastType, setToastType] = useState('success')
-  const [toastActive, setToastActive] = useState(false)
-  const [toastTimeout, setToastTimeout] = useState(5000)
 
   const validateEmail = () => {
     if(!(!!email)) {
@@ -130,12 +129,9 @@ export default function SignupView({ storeData = (d) => {} }: signupFormProps) {
 
       setLoading(true)
       const aliasFoundRes = await apiCall(`/alias/${alias}`, 'GET', false)
-      console.log(aliasFoundRes)
       if (aliasFoundRes.aliasFound) {
-        setToastMessage('Alias already in use')
-        setToastType('error')
-        setToastActive(true)
         setLoading(false)
+        dispatch(setToast({toastInfo: {toastMessage: 'Alias already in use', toastColor: 'error'}}))
         return
       }
       const data: registerData = {
@@ -160,9 +156,7 @@ export default function SignupView({ storeData = (d) => {} }: signupFormProps) {
       // // router.push('/')
     } catch (error) {
       setLoading(false)
-      setToastMessage(error as string)
-      setToastType('error')
-      setToastActive(true)
+      dispatch(setToast({toastInfo: {toastMessage: error as string, toastColor: 'error'}}))
     }
   }
 

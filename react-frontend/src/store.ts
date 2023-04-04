@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TokenSlice } from './features/token/tokenSlice'
 import { UserSlice } from './features/user/userSlice';
+import { ToastSlice } from './features/toast/toastSlice';
 
 const store = configureStore({
   reducer: {
     token: TokenSlice.reducer,
-    user: UserSlice.reducer
+    user: UserSlice.reducer,
+    toast: ToastSlice.reducer
   },
 })
 
