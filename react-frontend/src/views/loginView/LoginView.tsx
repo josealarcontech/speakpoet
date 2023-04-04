@@ -23,8 +23,6 @@ function LoginView() {
   const [phase, setPhase] = useState(0)
   const dispatch = useAppDispatch()
   const storeData = (data: toStoreData) => {
-    console.log("here")
-    console.log(data)
     if(data.token != undefined) {
       dispatch(setToken({token: data.token}))
     }

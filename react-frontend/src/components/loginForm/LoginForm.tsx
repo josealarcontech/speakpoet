@@ -9,6 +9,7 @@ import { toStoreData } from '../../views/loginView/LoginView'
 import { useAppDispatch } from '../../hooks'
 import './LoginForm.css'
 import { setToast } from '../../features/toast/toastSlice'
+import { useNavigate } from "react-router-dom";
 
 interface loginData {
   email: string
@@ -20,6 +21,7 @@ interface loginFormProps {
 }
 export default function LoginView({ storeData = (d) => {} }: loginFormProps) {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [emailErrorText, setEmailErrorText] = useState('')
@@ -66,7 +68,7 @@ export default function LoginView({ storeData = (d) => {} }: loginFormProps) {
       }
       storeData(toStore)
       setLoading(false)
-      // router.push('/')
+      navigate('/')
     } catch (error) {
       setLoading(false)
       dispatch(setToast({toastInfo: {toastMessage: error as string, toastColor: 'error'}}))
