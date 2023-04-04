@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import { Snackbar } from '@mui/material'
+import { Snackbar, Alert } from '@mui/material'
 import { useAppSelector, useAppDispatch } from "./hooks";
 import router from './router'
 import './App.css'
@@ -16,10 +16,13 @@ function App() {
       <Snackbar
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={useAppSelector(state => state.toast.toastActive)}
-        message={useAppSelector(state => state.toast.toastMessage)}
         autoHideDuration={5000}
         onClose={closeSnackbar}
-      />
+      >
+        <Alert severity={useAppSelector(state => state.toast.toastColor)} sx={{ width: '100%' }}>
+          {useAppSelector(state => state.toast.toastMessage)}
+        </Alert>
+      </Snackbar>
     </div>
   )
 }

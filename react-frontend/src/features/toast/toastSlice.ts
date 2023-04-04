@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-
+export type ToastColor = 'success' | 'info' | 'warning' | 'error';
 export interface toastInfo {
   toastActive?: boolean
   toastMessage: string
-  toastColor: string
+  toastColor: ToastColor
 }
 
 const initialState: toastInfo = {
