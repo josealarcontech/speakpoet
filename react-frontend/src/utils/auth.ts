@@ -1,7 +1,7 @@
 import { FirebaseError } from 'firebase/app'
 import { auth } from './firebase'
-import { User, UserCredential, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-import { newUser, userCredential } from './types'
+import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { newUser } from './types'
 export interface userRegisterReturn {
 	token: string;
 	uid: string;

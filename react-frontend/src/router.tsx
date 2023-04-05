@@ -1,5 +1,5 @@
 import ErrorPage from "./routes/error-page";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Login from "./routes/login";
 import Home from "./routes/home";
 const router = createBrowserRouter([
@@ -12,6 +12,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
     errorElement: <ErrorPage />,
+    loader:() => {
+      console.log("router")
+      redirect('/login')
+      return null
+    }
   },
 ]);
 export default router

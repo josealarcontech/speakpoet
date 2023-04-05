@@ -19,7 +19,7 @@ interface loginData {
 interface loginFormProps {
   storeData: (data: toStoreData) => void
 }
-export default function LoginView({ storeData = (d) => {} }: loginFormProps) {
+export default function LoginForm({ storeData = (d) => {} }: loginFormProps) {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [password, setPassword] = useState('')

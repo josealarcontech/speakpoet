@@ -10,7 +10,6 @@ import { useAppDispatch } from './../../hooks'
 import { setToken, setTokenExpirationDate } from '../../features/token/tokenSlice'
 import { setImage, setUserAlias, setUserEmail } from '../../features/user/userSlice'
 
-
 export interface toStoreData  {
   token?: string
   imageUrl: string
