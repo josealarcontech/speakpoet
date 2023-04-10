@@ -1,4 +1,4 @@
-import { BrowserRouter as Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import { Snackbar, Alert, AppBar, Toolbar, IconButton, Menu, MenuItem } from '@mui/material'
