@@ -1,0 +1,21 @@
+
+.full-height {
+  height: inherit;
+}
+.view-height {
+  height: 95%
+}
+.login-card {
+  width: 400px;
+  height: 340px;
+}
+.signup-card {
+  width: 400px;
+  height: 650px;
+}
+.card-content {
+  height: 100%;
+}
+.divider {
+  padding-top: 25px;
+}
