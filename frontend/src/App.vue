@@ -21,7 +21,7 @@ const goToSettings = () => {
 
 <template>
 	<v-app class="app">
-		<v-app-bar v-if="route.meta.requiresAuth">
+		<!-- <v-app-bar v-if="route.meta.requiresAuth">
 			<v-app-bar-title>
 				<v-img
 					height="50"
@@ -76,7 +76,7 @@ const goToSettings = () => {
 		</v-app-bar>
 		<v-main>
 			<router-view />
-		</v-main>
+		</v-main> -->
 	</v-app>
 </template>
 

@@ -9,3 +9,17 @@ export type userCredential = {
     expirationTime: string
   }
 }
+
+
+export interface tag {
+  uid?: string
+  name: string
+  category: string
+}
+
+export interface folder {
+  uid?: string
+  name: string,
+  genre: tag | undefined,
+  type: tag | undefined
+}

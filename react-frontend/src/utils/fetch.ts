@@ -3,10 +3,9 @@ import { auth, getCurrentUser } from './firebase'
 import store from '../store';
 import { setToken, setTokenExpirationDate } from './../features/token/tokenSlice'
 import { User } from 'firebase/auth'
-const expirationTime = store.getState().token.tokenExpirationDate
-const authToken = store.getState().token.token
 async function checkTokenValid() {
-	if(new Date() > new Date(expirationTime)) {
+	const expirationTime = store.getState().token.tokenExpirationDate
+	if(expirationTime === '' || new Date() > new Date(expirationTime)) {
 		let user: User | null = auth.currentUser
 		if (user === null) {
 			user = await getCurrentUser() as User
@@ -22,6 +21,7 @@ async function checkTokenValid() {
 
 async function apiCall(urlEnding: string, method: string, authNeeded: boolean, body = {}) {
 	if(authNeeded) await checkTokenValid()
+	const authToken = store.getState().token.token
 	const urlBase = import.meta.env.PROD ? import.meta.env.VITE_API_PROD : import.meta.env.VITE_API_DEV
 	const url = urlBase + urlEnding
 	let response
